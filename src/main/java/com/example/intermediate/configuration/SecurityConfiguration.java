@@ -58,7 +58,10 @@ public class SecurityConfiguration {
         .antMatchers("/api/member/**").permitAll()
         .antMatchers("/api/post/**").permitAll()
         .antMatchers("/api/comment/**").permitAll()
+        .antMatchers("/h2-console/**").permitAll() // 누구나 h2-console 접속 허용
         .anyRequest().authenticated()
+
+
 
         .and()
         .apply(new JwtSecurityConfiguration(SECRET_KEY, tokenProvider, userDetailsService));
