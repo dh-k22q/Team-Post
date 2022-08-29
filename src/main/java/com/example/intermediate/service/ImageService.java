@@ -28,12 +28,12 @@ public class ImageService {
     private final AmazonS3Client s3Client;
 
 
-    public ResponseDto<String> upload(InputStream inputStream, String originFileName, String fileSize) {
+    public ResponseDto<String> upload(InputStream inputStream, String originFileName) {
         //S3에 저장되는 파일의 이름이 중복되지 않기 위해서 UUID로 생성한 랜덤 값과 파일 이름을 연결하여 S3에 업로드
         String s3FileName = UUID.randomUUID() + "-" + originFileName;
-        // Spring Server에서 S3로 파일을 업로드할때 파일 사이즈를 ContentLength로 S3에 알려주기 위해서 ObjectMetadata를 사용
+        // Spring Server에서 S3로 파일을 업로드
         ObjectMetadata objMeta = new ObjectMetadata();
-        objMeta.setContentLength(Long.parseLong(fileSize));
+
         // S3 API 메소드인 putObject를 이용하여 파일 Stream을 열어서 S3에 파일을 업로드
         s3Client.putObject(bucket, s3FileName, inputStream, objMeta);
         // getUrl 메소드를 통해서 S3에 업로드된 사진 URL을 가져오는 방식

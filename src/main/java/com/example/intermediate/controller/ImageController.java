@@ -17,8 +17,8 @@ public class ImageController {
 
     //Multipart 타입을 사용해서 클라이언트로부터 파일을 받아옴
     @PostMapping("/upload")
-    public ResponseDto<String> uploadFile(@RequestParam("images") MultipartFile multipartFile,
-                                          @RequestParam String fileSize) throws IOException {
-        return imageService.upload(multipartFile.getInputStream(), multipartFile.getOriginalFilename(), fileSize);
+    public ResponseDto<String> uploadFile(@RequestParam("images") MultipartFile multipartFile
+                                          ) throws IOException {
+        return imageService.upload(multipartFile.getInputStream(), multipartFile.getOriginalFilename());
     }
 }
