@@ -1,1 +1,3 @@
 rootProject.name = 'intermediate'
+//sdk사용 설정
+enableFeaturePreview('IMPROVED_POM_SUPPORT')
