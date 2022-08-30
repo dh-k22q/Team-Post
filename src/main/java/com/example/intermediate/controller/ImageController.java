@@ -17,7 +17,7 @@ public class ImageController {
     private final ImageService imageService;
 
     //Multipart 타입을 사용해서 클라이언트로부터 파일을 받아옴
-    @PostMapping("/upload")
+    @PostMapping("/auth/upload")
     public ResponseDto<String> uploadFile(@RequestParam("images") MultipartFile multipartFile, HttpServletRequest request
                                           ) throws IllegalAccessException {
         return imageService.upload(multipartFile, request);
