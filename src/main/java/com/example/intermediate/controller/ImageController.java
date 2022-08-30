@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-import java.io.IOException;
+import javax.servlet.http.HttpServletRequest;
+
 
 
 @RequiredArgsConstructor
@@ -17,8 +18,10 @@ public class ImageController {
 
     //Multipart 타입을 사용해서 클라이언트로부터 파일을 받아옴
     @PostMapping("/upload")
-    public ResponseDto<String> uploadFile(@RequestParam("images") MultipartFile multipartFile
-                                          ) throws IOException {
-        return imageService.upload(multipartFile.getInputStream(), multipartFile.getOriginalFilename());
+    public ResponseDto<String> uploadFile(@RequestParam("images") MultipartFile multipartFile, HttpServletRequest request
+                                          ) throws IllegalAccessException {
+        return imageService.upload(multipartFile, request);
     }
+
+
 }
