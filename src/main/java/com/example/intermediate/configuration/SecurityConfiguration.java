@@ -58,7 +58,8 @@ public class SecurityConfiguration {
         .antMatchers("/api/member/**").permitAll()
         .antMatchers("/api/post/**").permitAll()
         .antMatchers("/api/comment/**").permitAll()
-        .antMatchers("/h2-console/**").permitAll() // 누구나 h2-console 접속 허용
+        .antMatchers("/h2-console/**").permitAll() //  h2-console 접속 허용
+        .antMatchers("/upload/**").permitAll() //이미지 업로드 접속허용
         .anyRequest().authenticated()
 
 
