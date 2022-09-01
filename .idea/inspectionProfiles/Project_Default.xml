@@ -1,0 +1,22 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="IncorrectHttpHeaderInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="customHeaders">
+        <set>
+          <option value="Refresh-Token" />
+          <option value="Access-Token" />
+          <option value="Access-Token-Expire-Time" />
+          <option value="  &quot;content&quot;" />
+          <option value="  &quot;title&quot;" />
+          <option value="{" />
+          <option value="}" />
+          <option value="refreshToken" />
+          <option value="accessTokenExpiresIn" />
+          <option value="grantType" />
+          <option value="accessToken" />
+        </set>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>
