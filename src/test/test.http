@@ -1,0 +1,29 @@
+POST http://localhost:8080/api/member/signup
+Content-Type: application/json
+
+{
+  "nickname": "nono",
+  "password": "dndb5958",
+  "passwordConfirm": "dndb5958"
+}
+
+###
+POST http://localhost:8080/api/member/login
+Content-Type: application/json
+
+{
+"nickname": "nono",
+"password": "dndb5958"
+}
+### login
+
+POST http://localhost:8080/api/auth/post
+Content-Type: application/json
+acccpt: */*
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJub25vIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYxOTI5NDg0fQ.83sZ3lIrd8Znj7zKRJja5bISFQHdjTIvX8FbhrOSFKU
+Refresh-Token: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjI1MzI0ODR9.5fU9YtPXLqFNxw71LZmrcgV6LXk_6QqOJF6gnYkaHWE
+
+{
+"title": "nono",
+"content": "dndb"
+}
