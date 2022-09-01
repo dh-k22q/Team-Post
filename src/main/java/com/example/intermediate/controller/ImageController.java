@@ -2,26 +2,31 @@ package com.example.intermediate.controller;
 
 import com.example.intermediate.controller.response.ResponseDto;
 import com.example.intermediate.service.ImageService;
+import com.example.intermediate.service.S3Uploader;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 
 
-
-@RequiredArgsConstructor
 @RestController
+@RequiredArgsConstructor
 public class ImageController {
+    private final S3Uploader s3Uploader;
+    @Autowired
     private final ImageService imageService;
 
-    //Multipart 타입을 사용해서 클라이언트로부터 파일을 받아옴
-    @PostMapping("/auth/upload")
-    public ResponseDto<String> uploadFile(@RequestParam("images") MultipartFile multipartFile, HttpServletRequest request
-                                          ) throws IllegalAccessException {
-        return imageService.upload(multipartFile, request);
+    @RequestMapping(value = "/api/upload/image", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, method = RequestMethod.POST)
+    public ResponseDto<?> upload(HttpServletRequest request, @RequestParam(value="image", required = false) MultipartFile multipartFile) throws IOException {
+        String imgUrl = s3Uploader.upload(multipartFile, "static");
+
+        return imageService.upload(request, imgUrl);
     }
-
-
 }
